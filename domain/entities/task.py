@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import Optional
 from datetime import datetime
 
@@ -15,4 +15,14 @@ class Task:
         if not self.title or not self.description:
             raise ValueError("Title y description son requeridos")
         if self.user_id <= 0:
-            raise ValueError("user_id debe ser un entero positivo") 
+            raise ValueError("user_id debe ser un entero positivo")
+    
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'user_id': self.user_id,
+            'created_at': self.created_at.isoformat(),
+            'completed': self.completed
+        } 

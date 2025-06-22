@@ -9,4 +9,10 @@ class User:
     
     def __post_init__(self):
         if not self.username or not self.password_hash:
-            raise ValueError("Username y password_hash son requeridos") 
+            raise ValueError("Username y password_hash son requeridos")
+    
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'username': self.username
+        } 
